@@ -1,18 +1,32 @@
 @import "../../styles/variables.less";
+.container-booking-chair {
+  text-align: center;
+}
 .container-item {
   background: #1677ff;
   text-align: center;
   padding: 4px 0;
   border-radius: 4px;
   width: calc((100% - 11 * 10px) / 12);
+  cursor: pointer;
   &-entryway {
     background-color: #3d5054;
   }
   &-empty {
     background-color: transparent;
   }
+  &-couple {
+    background-color: @bg-purple;
+  }
   &-text {
     color: @text-white;
+    &-selected {
+      color: @text-black;
+      font-weight: @font-semibold;
+    }
+  }
+  &-selected {
+    background-color: @bg-yellow;
   }
 }
 .container-screen {
@@ -22,4 +36,54 @@
   background-color: red;
   justify-content: center;
   align-items: center;
+}
+
+.container-note-color {
+  margin-top: 20px;
+  padding: 20px;
+  &-title {
+    margin-bottom: 10px;
+    font-size: @font-h4;
+  }
+  &-item {
+    width: 25px;
+    height: 25px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &-normal {
+      background-color: #1677ff;
+    }
+    &-vip {
+      background-color: #cc4242;
+    }
+    &-chairSold {
+      background-color: @bg-gray;
+    }
+    &-couple {
+      background-color: @bg-purple;
+    }
+    &-luxury {
+      background-color: #2b9600;
+    }
+    &-entryway {
+      background-color: #3d5054;
+    }
+    &-chairSelected {
+      background-color: @bg-yellow;
+    }
+    &-text {
+      text-align: center;
+      color: @text-white;
+      font-size: @font-body-xs;
+    }
+  }
+}
+
+.container-note-button {
+  background-color: #cc4242;
+  color: @text-white;
+  border-radius: 6px;
+  padding: 20px;
 }
