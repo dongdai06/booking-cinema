@@ -1,3 +1,5 @@
+import bapnuoc from "../assets/images/bapnuoc.jpg";
+
 // data chọn ghế
 export const dataFake = [
   {
@@ -206,5 +208,32 @@ export const dataNoteColor = [
   {
     id: 4,
     type: "chairSelected",
+  },
+];
+
+export const dataCorn = [
+  {
+    id: 1,
+    name: "Combo bắp nước",
+    price: 80000,
+    description: "1 Bắp 44oz + 1 Coca 32oz",
+    image: bapnuoc,
+    quantity: 0,
+  },
+  {
+    id: 2,
+    name: "Combo bắp nước",
+    price: 120000,
+    description: "1 Bắp 44oz + 1 Coca 32oz",
+    image: bapnuoc,
+    quantity: 0,
+  },
+  {
+    id: 3,
+    name: "Combo bắp nước",
+    price: 100000,
+    description: "1 Bắp 44oz + 1 Coca 32oz",
+    image: bapnuoc,
+    quantity: 0,
   },
 ];
