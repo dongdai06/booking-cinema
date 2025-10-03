@@ -1,0 +1,28 @@
+@import "../../styles/variables.less";
+
+.login-page {
+  min-width: 500px;
+
+  .login-card {
+    background: @bg-white;
+    padding: 28px;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+
+    .login-title {
+      margin: 0 0 16px 0;
+      text-align: center;
+    }
+    &-form {
+      &-input {
+        height: 40px;
+      }
+      &-submit {
+        border-radius: 6px;
+        padding: 20px;
+        background-color: @bg-danger;
+        color: @text-white;
+      }
+    }
+  }
+}

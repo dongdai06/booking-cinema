@@ -1,0 +1,31 @@
+@import "../../styles/variables.less";
+
+.twolevel-menu {
+  .ant-menu-horizontal {
+    border-bottom: none;
+    background: linear-gradient(#8e0404, #dd0d17);
+    display: flex;
+    align-items: center;
+    > .ant-menu-item,
+    > .ant-menu-submenu {
+      flex: 1 1 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 0 16px;
+    }
+  }
+
+  .ant-menu-item,
+  .ant-menu-submenu .ant-menu-submenu-title {
+    font-weight: @font-semibold;
+    color: @text-white;
+    height: 56px;
+    line-height: 56px;
+  }
+  .ant-menu-submenu,
+  .ant-menu-item:hover {
+    color: @text-white !important;
+  }
+}

@@ -222,7 +222,7 @@ export const dataCorn = [
   },
   {
     id: 2,
-    name: "Combo bắp nước",
+    name: "Combo bắp nước 1",
     price: 120000,
     description: "1 Bắp 44oz + 1 Coca 32oz",
     image: bapnuoc,
@@ -230,7 +230,7 @@ export const dataCorn = [
   },
   {
     id: 3,
-    name: "Combo bắp nước",
+    name: "Combo bắp nước 2",
     price: 100000,
     description: "1 Bắp 44oz + 1 Coca 32oz",
     image: bapnuoc,

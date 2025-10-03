@@ -2,10 +2,11 @@ import { Button, Col, Flex, Typography } from "antd";
 import "./index.less";
 import { useState } from "react";
 import { formatCurrencyVND } from "../../utlis";
-import { dataCorn } from "../../data";
+import type { ListDataCorns } from "../../interface";
+import { dataCorn } from "../../data/data";
 
 function ChooseCornPage() {
-  const [data, setData] = useState<any>(dataCorn);
+  const [data, setData] = useState<ListDataCorns[]>(dataCorn);
 
   const handleIncrease = (itemValue: number) => {
     setData((prevCart) =>
@@ -40,7 +41,7 @@ function ChooseCornPage() {
         </Col>
         <Col xxl={24} className="container-choose-corn-box">
           <Flex wrap="wrap">
-            {data.map((item: any) => (
+            {data.map((item: ListDataCorns) => (
               <Col xxl={24} className="container-choose-corn-box-item">
                 <Flex>
                   <Col>
@@ -82,7 +83,18 @@ function ChooseCornPage() {
         </Col>
         <Col className="container-choose-corn-information">
           <Col>
-            <Typography>Bắp nước đã chọn:</Typography>
+            <Flex wrap="wrap">
+              {data.map((item) => (
+                <Col xxl={24}>
+                  {item.quantity > 0 && (
+                    <Col>
+                      <Typography>Bắp nước đã chọn: {item.name}</Typography>
+                    </Col>
+                  )}
+                </Col>
+              ))}
+            </Flex>
+
             <Typography>Thành tiền: {formatCurrencyVND(totalPrice)}</Typography>
             <Button className="container-note-button">Tiếp theo</Button>
           </Col>

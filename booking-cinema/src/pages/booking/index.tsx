@@ -1,17 +1,16 @@
 import { Button, Col, Flex, Typography } from "antd";
 import "./index.less";
-import { dataFake, dataNoteColor } from "../../data";
 import { BookingChairType } from "../../constants";
 import { useState } from "react";
+import type { ListDataChooseChair } from "../../interface";
+import { dataFake, dataNoteColor } from "../../data/data";
 
 function BookingPage() {
-  const [dataNew, setDataNew] = useState(dataFake);
+  const [dataNew, setDataNew] = useState<ListDataChooseChair[]>(dataFake);
   const [informationChairSelected, setInformationChairSelected] = useState<
-    any[]
+    ListDataChooseChair[]
   >([]);
-  console.log("informationChairSelected", informationChairSelected);
-
-  const handleClassType = (item: any) => {
+  const handleClassType = (item: ListDataChooseChair) => {
     switch (item.type) {
       case BookingChairType.ENTRYWAY:
         return "container-item container-item-entryway";
@@ -70,7 +69,7 @@ function BookingPage() {
     }
   };
 
-  const handleChairSelected = (item: any) => {
+  const handleChairSelected = (item: ListDataChooseChair) => {
     setInformationChairSelected((prev) => [...prev, item]);
 
     setDataNew((prev) =>

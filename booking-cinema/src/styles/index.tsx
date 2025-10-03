@@ -1,1 +1,1 @@
-export * from './variables.less'
+

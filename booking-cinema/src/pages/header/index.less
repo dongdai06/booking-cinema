@@ -1,0 +1,25 @@
+@import "../../styles/variables.less";
+.header {
+  &-logo {
+    object-fit: contain;
+  }
+  &-search {
+    min-width: 600px;
+    margin: 0 20px;
+    &-input {
+      height: 40px;
+      border-radius: 4px;
+      padding: 0 20px;
+    }
+  }
+  &-profile {
+    &-text {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    &-language {
+      color: @text-danger;
+      margin-left: 20px;
+    }
+  }
+}
