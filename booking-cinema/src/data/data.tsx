@@ -1,5 +1,6 @@
 import bapnuoc from "../assets/images/bapnuoc.jpg";
-
+import movie1 from "../assets/images/movie1.jpg";
+import movie2 from "../assets/images/movie2.jpg";
 // data chọn ghế
 export const dataFake = [
   {
@@ -235,5 +236,56 @@ export const dataCorn = [
     description: "1 Bắp 44oz + 1 Coca 32oz",
     image: bapnuoc,
     quantity: 0,
+  },
+];
+
+export const moviesNow = [
+  {
+    id: 1,
+    title: "CHAINSAW MAN – THE MOVIE: CHƯƠNG REZE",
+    image: movie1,
+    tag: "T18",
+  },
+  {
+    id: 2,
+    title: "ĐỒI HÀNH XÁC: TÀ THUYẾT ĐEN TRỞ LẠI",
+    image: movie2,
+    tag: "T18",
+  },
+  {
+    id: 3,
+    title: "TRẬN CHIẾN SAU TRẬN CHIẾN",
+    image: movie1,
+    tag: "T18",
+  },
+  {
+    id: 4,
+    title: "MARS EXPRESS",
+    image: movie2,
+    tag: "T16",
+  },
+  {
+    id: 5,
+    title: "CẬU BÉ CÁ HEO VÀ BÍ MẬT 7 ĐẠI DƯƠNG",
+    image: movie1,
+    tag: "T18",
+  },
+  {
+    id: 6,
+    title: "CẬU BÉ CÁ HEO VÀ BÍ MẬT 7 ĐẠI DƯƠNG",
+    image: movie1,
+    tag: "T18",
+  },
+  {
+    id: 7,
+    title: "CẬU BÉ CÁ HEO VÀ BÍ MẬT 7 ĐẠI DƯƠNG",
+    image: movie1,
+    tag: "T18",
+  },
+  {
+    id: 8,
+    title: "CẬU BÉ CÁ HEO VÀ BÍ MẬT 7 ĐẠI DƯƠNG",
+    image: movie1,
+    tag: "T18",
   },
 ];

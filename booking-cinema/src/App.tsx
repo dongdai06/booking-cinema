@@ -1,16 +1,18 @@
-import { Col } from "antd";
 import "./App.css";
 import Header from "./pages/header";
 // import BookingPage from './pages/booking'
 // import ChooseCornPage from './pages/Choose-Corn'
 import LoginPage from "./pages/login";
 import TwoLevelMenu from "./components/Menu";
+import MovieCarousel from "./components/Carousel";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   return (
     <>
       <Header />
-      <Col style={{ flex: 1 }}>
+      
         <TwoLevelMenu
           items={[
             { key: "schedule", label: "Lịch chiếu" },
@@ -29,7 +31,8 @@ function App() {
           ]}
           onSelect={(k) => console.log("menu select", k)}
         />
-      </Col>
+     
+      <MovieCarousel />
       <LoginPage />
     </>
   );
