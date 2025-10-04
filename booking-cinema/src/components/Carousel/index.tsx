@@ -4,6 +4,7 @@ import { Tabs, Button, Tag } from "antd";
 import Slider from "react-slick";
 import "./index.less";
 import { moviesNow } from "../../data/data";
+import { useNavigate } from "react-router-dom";
 
 // custom arrow
 const PrevArrow = (props: any) => {
@@ -27,6 +28,10 @@ const settings = {
 };
 
 const MovieCarousel: React.FC = () => {
+  const navigate = useNavigate();
+  const handleBookingTicket = () => {
+    navigate("booking");
+  };
   return (
     <div className="movie-carousel">
       <Tabs
@@ -45,7 +50,11 @@ const MovieCarousel: React.FC = () => {
                       <Tag className="age-tag">{movie.tag}</Tag>
                     </div>
                     <div className="title">{movie.title}</div>
-                    <Button className="btn-ticket" block>
+                    <Button
+                      className="btn-ticket"
+                      block
+                      onClick={handleBookingTicket}
+                    >
                       🎟 ĐẶT VÉ
                     </Button>
                   </div>

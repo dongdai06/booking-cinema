@@ -25,6 +25,7 @@ function LoginPage() {
       message.error("Login failed");
     }
   };
+  
 
   return (
     <Col className="login-page">

@@ -4,12 +4,17 @@ import { BookingChairType } from "../../constants";
 import { useState } from "react";
 import type { ListDataChooseChair } from "../../interface";
 import { dataFake, dataNoteColor } from "../../data/data";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../constants/routes";
+import { formatCurrencyVND } from "../../utlis";
 
 function BookingPage() {
   const [dataNew, setDataNew] = useState<ListDataChooseChair[]>(dataFake);
   const [informationChairSelected, setInformationChairSelected] = useState<
     ListDataChooseChair[]
   >([]);
+  console.log("informationChairSelected", informationChairSelected);
+
   const handleClassType = (item: ListDataChooseChair) => {
     switch (item.type) {
       case BookingChairType.ENTRYWAY:
@@ -70,8 +75,44 @@ function BookingPage() {
   };
 
   const handleChairSelected = (item: ListDataChooseChair) => {
-    setInformationChairSelected((prev) => [...prev, item]);
+    // determine whether item (or item group for couple) is currently selected
+    const isSelected = informationChairSelected.some((sel) =>
+      item.type === BookingChairType.NORMAL
+        ? sel.id === item.id
+        : // for couple, we use seatType to identify the pair/group
+        item.type === BookingChairType.COUPLE
+        ? sel.seatType === item.seatType
+        : false
+    );
 
+    // Update selected info: remove if currently selected, otherwise add.
+    if (item.type === BookingChairType.COUPLE) {
+      if (isSelected) {
+        // remove all selected chairs that belong to this couple seatType
+        setInformationChairSelected((prev) =>
+          prev.filter((sel) => sel.seatType !== item.seatType)
+        );
+      } else {
+        // add all chairs from current data that belong to this couple seatType
+        const chairsToAdd = dataNew.filter(
+          (c) =>
+            c.seatType === item.seatType &&
+            !informationChairSelected.some((s) => s.id === c.id)
+        );
+        setInformationChairSelected((prev) => [...prev, ...chairsToAdd]);
+      }
+    } else {
+      // NORMAL seat: toggle single item in the selected list
+      if (isSelected) {
+        setInformationChairSelected((prev) =>
+          prev.filter((sel) => sel.id !== item.id)
+        );
+      } else {
+        setInformationChairSelected((prev) => [...prev, item]);
+      }
+    }
+
+    // Update the main chair data: flip status for matching chairs.
     setDataNew((prev) =>
       prev.map((chair) => {
         const isNormal =
@@ -86,6 +127,52 @@ function BookingPage() {
       })
     );
   };
+  const navigate = useNavigate();
+  const handleContinue = () => {
+    navigate(ROUTES.CHOOSE_CORN);
+  };
+
+  // helper to produce a human-readable label for a chair
+  const getChairLabel = (ch: ListDataChooseChair) => {
+    // prefer name if provided, otherwise fallback to id
+    return ch.name ?? `Ghế ${ch.id}`;
+  };
+
+  // derive selected chairs from dataNew as single source of truth
+  const selectedFromData = dataNew.filter((c) => c.status);
+
+  // group selected chairs by seatType for couple seats, otherwise by id
+  const groupedSelected = selectedFromData.reduce<
+    Record<string, ListDataChooseChair[]>
+  >((acc, ch) => {
+    const key =
+      ch.type === BookingChairType.COUPLE && ch.seatType
+        ? ch.seatType
+        : ch.id.toString();
+    (acc[key] ||= []).push(ch);
+    return acc;
+  }, {});
+
+  // use shared currency formatter from utils
+
+  // fallback prices when data doesn't include price for some seats
+  const DEFAULT_SEAT_PRICE = 60000; // per-seat fallback
+  const DEFAULT_COUPLE_PRICE = 120000; // per-couple fallback
+
+  const groupPrice = (chairs: ListDataChooseChair[]) => {
+    const sum = chairs.reduce((s, x) => s + (x.price ?? 0), 0);
+    if (sum > 0) return sum;
+    // if no price present on items, fallback based on group type
+    if (chairs.length === 2 && chairs[0].type === BookingChairType.COUPLE)
+      return DEFAULT_COUPLE_PRICE;
+    // single seat fallback
+    return chairs[0].price ?? DEFAULT_SEAT_PRICE;
+  };
+
+  const totalPrice = Object.values(groupedSelected).reduce(
+    (s, chairs) => s + groupPrice(chairs),
+    0
+  );
 
   return (
     <>
@@ -144,13 +231,45 @@ function BookingPage() {
             </Flex>
           </Col>
           <Col xxl={12}>
-            <Typography className="container-note-color-title">
-              {informationChairSelected && informationChairSelected?.length > 0
-                ? "Danh sách ghế đã chọn"
-                : "Chưa chọn ghế"}
+            <div className="selected-chairs-list" style={{ marginTop: 12 }}>
+              <Typography className="container-note-color-title">
+                {selectedFromData.length > 0 ? "Danh sách ghế đã chọn" : "Chưa chọn ghế"}
+              </Typography>
+
+              {selectedFromData.length > 0 && (
+                <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
+                  {Object.entries(groupedSelected).map(([key, chairs]) => (
+                    <li
+                      key={key}
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        padding: 6,
+                      }}
+                    >
+                      <span>
+                        {chairs.map((c) => getChairLabel(c)).join(".")}
+                      </span>
+                      <span style={{ marginLeft: 12, fontWeight: 600 }}>
+                        {formatCurrencyVND(groupPrice(chairs))}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
+            <Typography style={{ marginTop: 12 }}>
+              Gía vé: {formatCurrencyVND(totalPrice)}
             </Typography>
-            <Typography>Gía vé: 0</Typography>
-            <Button className="container-note-button">Tiếp theo</Button>
+            <Button
+              className="container-note-button"
+              onClick={handleContinue}
+              style={{ marginTop: 8 }}
+            >
+              Tiếp theo
+            </Button>
           </Col>
         </Flex>
       </Col>
