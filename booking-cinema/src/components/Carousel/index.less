@@ -1,0 +1,92 @@
+@import "../../styles/variables.less";
+.movie-carousel {
+  background: #272729;
+  position: relative;
+  .slick-slide > div {
+    padding: 0 8px;
+  }
+  .ant-tabs-nav {
+    margin-bottom: 20px;
+    .ant-tabs-tab {
+      color: #aaa;
+      font-size: @font-body-xl;
+      font-weight: @font-semibold;
+      &.ant-tabs-tab-active {
+        color: @text-white;
+      }
+    }
+    .ant-tabs-ink-bar {
+      background: @text-white;
+    }
+  }
+
+  .movie-card {
+    text-align: center;
+    color: @text-white;
+    .poster {
+      position: relative;
+
+      img {
+        width: 100%;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+      }
+      .age-tag {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: #fadb14;
+        border: none;
+        font-weight: bold;
+      }
+    }
+
+    .title {
+      margin: 10px 0;
+      font-size: @font-body-md;
+      font-weight: @font-semibold;
+    }
+
+    .btn-ticket {
+      background: @bg-danger;
+      border: none;
+      font-weight: @font-semibold;
+      color: @text-white;
+      padding: 20px;
+      border-radius: 6px;
+      &:hover {
+        background: @bg-danger;
+      }
+    }
+  }
+
+  .slick-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    color: @text-white;
+    font-size: 20px;
+    z-index: 10;
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+  }
+
+  .slick-prev {
+    left: 0;
+  }
+
+  .slick-next {
+    right: 0;
+  }
+}

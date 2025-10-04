@@ -1,0 +1,49 @@
+@import "../../styles/variables.less";
+
+.container-choose-corn {
+  &-text {
+    text-align: center;
+  }
+  &-box {
+    background-color: transparent;
+    padding: 10px;
+    &-item {
+      margin: 5px 0;
+      &-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 6px;
+      }
+      &-information {
+        margin-left: 20px;
+        &-driver {
+          height: 1px;
+          background-color: @bg-gray;
+          width: 100%;
+          margin: 20px 0;
+        }
+        &-quantity {
+          width: 50px;
+          height: 50px;
+          border-radius: 100px;
+          background-color: red;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: @text-white;
+          &-text {
+            font-size: @font-h4;
+            margin: 0 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.container-note-button {
+  background-color: @bg-danger;
+  color: @text-white;
+  border-radius: 6px;
+  padding: 20px;
+}
