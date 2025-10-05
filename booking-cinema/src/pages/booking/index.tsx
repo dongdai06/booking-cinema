@@ -7,6 +7,7 @@ import { dataFake, dataNoteColor } from "../../data/data";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
 import { formatCurrencyVND } from "../../utlis";
+import { notificationError } from "../../components/notification/notification-provider";
 
 function BookingPage() {
   const [dataNew, setDataNew] = useState<ListDataChooseChair[]>(dataFake);
@@ -129,6 +130,12 @@ function BookingPage() {
   };
   const navigate = useNavigate();
   const handleContinue = () => {
+    if (selectedFromData.length === 0) {
+      notificationError({
+        message: "Vui lòng chọn ghế trước khi tiếp tục",
+      });
+      return;
+    }
     navigate(ROUTES.CHOOSE_CORN);
   };
 
@@ -233,7 +240,9 @@ function BookingPage() {
           <Col xxl={12}>
             <div className="selected-chairs-list" style={{ marginTop: 12 }}>
               <Typography className="container-note-color-title">
-                {selectedFromData.length > 0 ? "Danh sách ghế đã chọn" : "Chưa chọn ghế"}
+                {selectedFromData.length > 0
+                  ? "Danh sách ghế đã chọn"
+                  : "Chưa chọn ghế"}
               </Typography>
 
               {selectedFromData.length > 0 && (
