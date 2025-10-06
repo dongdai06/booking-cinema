@@ -289,3 +289,25 @@ export const moviesNow = [
     tag: "T18",
   },
 ];
+
+export const dataInformation = {
+    name: "Dong",
+    email: "daidongtma@gmail.com",
+    phoneNumber: "00",
+    rap: "DCINE Quy Nhơn",
+    nameMovie: "Chị Ngã Em Nâng",
+    showTime: "20:30 - 05/10/2025",
+    informationChair: [
+      {
+        id: 1,
+        name: "L01",
+        price: 60000,
+      },
+      {
+        id: 2,
+        name: "L02",
+        price: 60000,
+      },
+    ],
+    numberComboCorn: 0,
+  };
