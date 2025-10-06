@@ -9,6 +9,7 @@ import MovieCarousel from "./components/Carousel";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { ROUTES } from "./constants/routes";
+import ConfirmInformationPage from "./pages/confirm-information";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
         />
         <Route path={ROUTES.BOOKING} element={<BookingPage />} />
         <Route path={ROUTES.CHOOSE_CORN} element={<ChooseCornPage />} />
+        <Route path={ROUTES.CONFIRM_INFORMATION} element={<ConfirmInformationPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
     </>
