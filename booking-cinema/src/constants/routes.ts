@@ -4,4 +4,5 @@ export const ROUTES = {
   CHOOSE_CORN: "/booking/choose-corn",
   LOGIN: "/login",
   CONFIRM_INFORMATION: "/booking/confirm-information",
+  PAYMENT_OPTIONS: "/booking/payment-options",
 };

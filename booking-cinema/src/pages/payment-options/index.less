@@ -1,0 +1,67 @@
+@import "../../styles/variables.less";
+.container-payment {
+  &-left {
+    &-title {
+      font-weight: @font-semibold;
+      font-size: @font-body-xl;
+    }
+    &-options {
+      padding: 12px;
+      border: 1px solid @text-black;
+      margin: 10px 0;
+
+      &-information {
+        text-align: center;
+        &-title {
+          font-weight: @font-semibold;
+          font-size: @font-body-xl;
+        }
+        &-drive {
+          border-bottom: 2px solid #000;
+          margin: 10px 0;
+        }
+        &-text {
+          font-weight: @font-normal;
+          font-size: @font-body-xs;
+        }
+      }
+      &-search {
+        margin-top: 10px;
+        &-input {
+          padding: 5px 10px;
+          background-color: #f2f4f7;
+        }
+      }
+      &-margin {
+        margin: 10px 0;
+      }
+    }
+  }
+  &-right {
+    &-top {
+      background-color: @bg-light-gray;
+      padding: 10px;
+      &-time {
+        font-weight: @font-semibold;
+        font-size: @font-body-xmd;
+      }
+    }
+    &-information {
+      background-color: @bg-white;
+      padding: 10px;
+      border: 1px solid @bg-light-gray;
+      &-drive {
+        border-bottom: 1px solid @bg-light-gray;
+        margin: 10px 0;
+      }
+      &-margin {
+        margin: 10px 0;
+      }
+      &-span {
+        font-weight: @font-semibold;
+        font-size: @font-body-xmd;
+        margin-left: 5px;
+      }
+    }
+  }
+}
