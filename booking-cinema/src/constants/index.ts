@@ -8,3 +8,9 @@ export enum BookingChairType {
   CHAIR_SELECTED = "chairSelected",
   NORMAL = "normal",
 }
+
+
+export enum PaymentOptions {
+  QR_CODE = "QRCode",
+  ATM = "ATM",
+}

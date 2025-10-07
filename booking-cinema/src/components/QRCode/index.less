@@ -1,0 +1,40 @@
+@import "../../styles/variables.less";
+.container-qr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  &-card {
+    background: @bg-white;
+    border: 1px solid @text-black;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    &-box {
+      background: @bg-white;
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    &-footer {
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+    }
+    &-text {
+      font-size: @font-body-xmd;
+      font-weight: @font-semibold;
+    }
+    &-time {
+      font-size: @font-body-xmd;
+      font-weight: @font-bold;
+      font-style: italic;
+      color: @text-blue;
+    }
+  }
+}

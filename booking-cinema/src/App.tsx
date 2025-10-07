@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { ROUTES } from "./constants/routes";
 import ConfirmInformationPage from "./pages/confirm-information";
+import PaymentOptionsPage from "./pages/payment-options";
 
 function App() {
   return (
@@ -46,7 +47,11 @@ function App() {
         />
         <Route path={ROUTES.BOOKING} element={<BookingPage />} />
         <Route path={ROUTES.CHOOSE_CORN} element={<ChooseCornPage />} />
-        <Route path={ROUTES.CONFIRM_INFORMATION} element={<ConfirmInformationPage />} />
+        <Route
+          path={ROUTES.CONFIRM_INFORMATION}
+          element={<ConfirmInformationPage />}
+        />
+        <Route path={ROUTES.PAYMENT_OPTIONS} element={<PaymentOptionsPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
     </>
