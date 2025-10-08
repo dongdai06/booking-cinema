@@ -5,4 +5,5 @@ export const ROUTES = {
   LOGIN: "/login",
   CONFIRM_INFORMATION: "/booking/confirm-information",
   PAYMENT_OPTIONS: "/booking/payment-options",
+  BOOKING_COMPLETE: "/booking/complete",
 };

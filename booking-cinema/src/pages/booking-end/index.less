@@ -1,0 +1,49 @@
+@import "../../styles/variables.less";
+.booking-info {
+  &-card {
+    background-color: #0d0d0d;
+    color: @text-white;
+    margin-top: 20px;
+    .ant-card-body {
+      padding: 0;
+    }
+    &-title {
+      background-color: @bg-danger;
+      color: @text-white !important;
+      text-align: center;
+      padding: 10px 0;
+      margin: 0 !important;
+    }
+    &-table {
+      background: url("/background-cinema.jpg") center/cover no-repeat;
+      color: @text-white;
+
+      .ant-table {
+        background: transparent;
+      }
+
+      .ant-table-thead > tr > th {
+        background: transparent !important;
+        color: @text-white;
+      }
+
+      .ant-table-tbody > tr > td {
+        background: rgba(0, 0, 0, 0.6);
+        border-color: @bg-white;
+        color: @text-white;
+      }
+
+      .ant-table-tbody > tr:hover > td {
+        background-color: rgba(0, 0, 0, 0.6) !important;
+      }
+
+      .ant-table-cell {
+        vertical-align: middle;
+      }
+
+      .ant-typography {
+        color: @text-white;
+      }
+    }
+  }
+}

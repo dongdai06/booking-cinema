@@ -1,6 +1,15 @@
 import { Button, Checkbox, Col, Form, Input, message } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import {
+  UserOutlined,
+  LockOutlined,
+  EyeInvisibleOutlined,
+  EyeTwoTone,
+} from "@ant-design/icons";
 import "./index.less";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../constants/routes";
+import { notificationError, notificationSuccess } from "../../components/notification/notification-provider";
+import { localStorageKeys, setLocalStorageItem } from "../../utlis/localStorageUtil";
 
 type LoginValues = {
   username: string;
@@ -10,27 +19,33 @@ type LoginValues = {
 
 function LoginPage() {
   const [form] = Form.useForm<LoginValues>();
+  const navigate = useNavigate();
 
   const onFinish = async (values: LoginValues) => {
     try {
       // mock authentication - replace with real API call (services/auth)
-      if (values.username === "admin" && values.password === "admin") {
-        message.success("Login successful");
-        // TODO: redirect to dashboard or set auth state
+      if (values.username === "admin" && values.password === "123") {
+        notificationSuccess({
+          message: "Đăng nhập thành công",
+        });
+        navigate(ROUTES.BOOKING);
+        setLocalStorageItem(localStorageKeys.IS_LOGIN, true);
       } else {
-        message.error("Invalid username or password");
+        notificationError({
+          message: "Invalid username or password",
+        });
       }
     } catch (err) {
       console.error(err);
       message.error("Login failed");
     }
   };
-  
 
   return (
     <Col className="login-page">
       <Col xxl={24} className="login-card">
         <h2 className="login-title">Sign in</h2>
+
         <Form<LoginValues>
           form={form}
           name="login"
@@ -59,6 +74,9 @@ function LoginPage() {
               prefix={<LockOutlined />}
               placeholder="Password"
               className="login-card-form-input"
+              iconRender={(visible) =>
+                visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+              }
             />
           </Form.Item>
 
@@ -67,7 +85,12 @@ function LoginPage() {
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" block className="login-card-form-submit">
+            <Button
+              type="primary"
+              htmlType="submit"
+              block
+              className="login-card-form-submit"
+            >
               Log in
             </Button>
           </Form.Item>
