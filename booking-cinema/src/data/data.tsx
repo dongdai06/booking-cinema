@@ -1,6 +1,7 @@
 import bapnuoc from "../assets/images/bapnuoc.jpg";
 import movie1 from "../assets/images/movie1.jpg";
 import movie2 from "../assets/images/movie2.jpg";
+import type { BookingInfo } from "../interface";
 // data chọn ghế
 export const dataFake = [
   {
@@ -317,3 +318,19 @@ export const dataPayment = {
   orderCode: "0000",
   unit: "DCINE",
 };
+
+export const dataCompleteBooking: BookingInfo[] = [
+  { key: "1", label: "Người đặt", value: "Dong" },
+  { key: "2", label: "Ngày đặt", value: "08/10/2025" },
+  { key: "3", label: "Phim", value: "" },
+  { key: "4", label: "Ghế", value: "" },
+  { key: "5", label: "Suất chiếu", value: "" },
+  { key: "6", label: "Rạp", value: "" },
+  { key: "7", label: "Tổng tiền", value: "60.000 vnđ" },
+  {
+    key: "8",
+    label: "Trạng Thái",
+    value:
+      "Đặt vé không thành công. Vui lòng kiểm tra lại thông tin hoặc liên hệ hotline để được hỗ trợ.",
+  },
+];

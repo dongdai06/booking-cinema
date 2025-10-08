@@ -15,3 +15,9 @@ export interface ListDataChooseChair {
   seatType?: string,
   price?: number,
 }
+
+export interface BookingInfo {
+  key: string;
+  label: string;
+  value: string;
+}
