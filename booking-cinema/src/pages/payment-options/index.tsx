@@ -4,16 +4,25 @@ import QRWithCountdown from "../../components/QRCode";
 import { useCountdown } from "../../hook/useCountdown";
 import { formatCurrencyVND } from "../../utlis";
 import { dataPayment } from "../../data/data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PaymentOptions } from "../../constants";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../constants/routes";
 
 function PaymentOptionsPage() {
-  const { remaining, formatted } = useCountdown(20 * 60);
+  const navigate = useNavigate();
+  const { remaining, formatted } = useCountdown(1 * 60);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   const handleCheckedPaymentOptions = (option: string) => {
     setSelectedOption((prev) => (prev === option ? null : option));
   };
+
+  useEffect(() => {
+    if(remaining === 0){
+      navigate(ROUTES.BOOKING_COMPLETE);
+    }
+  }, [remaining])
 
   return (
     <Flex justify="space-between" className="container-payment">
