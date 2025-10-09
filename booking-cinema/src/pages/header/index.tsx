@@ -1,30 +1,72 @@
-import { Col, Flex, Input, Typography } from "antd";
+import { Col, Flex, Input, Typography, Dropdown, Menu } from "antd";
+import {
+  SearchOutlined,
+  UserOutlined,
+  LogoutOutlined,
+} from "@ant-design/icons";
 import logo from "../../assets/images/logo.png";
-import { SearchOutlined } from "@ant-design/icons";
 import "./index.less";
 import { useNavigate } from "react-router-dom";
 import {
+  actionRemoveStorage,
   getLocalStorageItem,
   localStorageKeys,
 } from "../../utlis/localStorageUtil";
 import { ROUTES } from "../../constants/routes";
-// import { notificationSuccess } from "../../components/notification/notification-provider";
+import { notificationSuccess } from "../../components/notification/notification-provider";
 
 function Header() {
   const navigate = useNavigate();
-  const handleLogin = () => {
-    navigate(ROUTES.LOGIN);
-  };
 
   const isLogin: boolean =
     getLocalStorageItem(localStorageKeys.IS_LOGIN) || false;
-  // const handleLogOut = () => {
-  //   actionRemoveStorage();
-  //   navigate(ROUTES.LOGIN);
-  //   notificationSuccess({
-  //     message: "Đăng xuất thành công",
-  //   });
-  // };
+
+  const handleLogin = () => {
+    if (!isLogin) {
+      navigate(ROUTES.LOGIN);
+    }
+  };
+
+  const handleMenuClick = ({ key }: { key: string }) => {
+    if (key === "info") {
+      console.log("Xem thông tin người dùng");
+      // navigate("/profile");
+    } else if (key === "logout") {
+      console.log("Đăng xuất");
+      actionRemoveStorage();
+      navigate(ROUTES.LOGIN);
+      notificationSuccess({ message: "Đăng xuất thành công" });
+    }
+  };
+
+  const menu = (
+    <Menu
+      onClick={handleMenuClick}
+      items={[
+        {
+          key: "info",
+          label: "Thông tin",
+          icon: <UserOutlined />,
+        },
+        {
+          type: "divider",
+        },
+        {
+          key: "logout",
+          label: "Đăng xuất",
+          icon: <LogoutOutlined />,
+        },
+      ]}
+      style={{
+        borderRadius: 8,
+        padding: "4px 0",
+        background: "#2f2f2f",
+        color: "white",
+        minWidth: 160,
+      }}
+    />
+  );
+
   return (
     <Col>
       <Flex justify="space-between" align="center">
@@ -39,14 +81,32 @@ function Header() {
             className="header-search-input"
           />
         </Col>
+
         <Col className="header-profile">
-          <Flex align="center">
-            <Typography
-              className="header-profile-text"
-              onClick={handleLogin}
-            >
-              {isLogin ? "Đăng xuất" : "Đăng nhập"}
-            </Typography>
+          <Flex align="center" gap={20}>
+            {isLogin ? (
+              <Dropdown
+                overlay={menu}
+                placement="bottomRight"
+                trigger={["click"]}
+              >
+                <Typography.Text
+                  className="header-profile-text"
+                  style={{ cursor: "pointer" }}
+                >
+                 Đông
+                </Typography.Text>
+              </Dropdown>
+            ) : (
+              <Typography.Text
+                className="header-profile-text"
+                onClick={handleLogin}
+                style={{ cursor: "pointer" }}
+              >
+                Đăng nhập
+              </Typography.Text>
+            )}
+
             <Typography className="header-profile-text header-profile-language">
               VI | EN
             </Typography>

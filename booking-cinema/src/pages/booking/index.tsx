@@ -8,13 +8,18 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
 import { formatCurrencyVND } from "../../utlis";
 import { notificationError } from "../../components/notification/notification-provider";
+import {
+  getLocalStorageItem,
+  localStorageKeys,
+} from "../../utlis/localStorageUtil";
 
 function BookingPage() {
   const [dataNew, setDataNew] = useState<ListDataChooseChair[]>(dataFake);
   const [informationChairSelected, setInformationChairSelected] = useState<
     ListDataChooseChair[]
   >([]);
-  console.log("informationChairSelected", informationChairSelected);
+  const isLogin: boolean =
+    getLocalStorageItem(localStorageKeys.IS_LOGIN) || false;
 
   const handleClassType = (item: ListDataChooseChair) => {
     switch (item.type) {
@@ -133,6 +138,11 @@ function BookingPage() {
     if (selectedFromData.length === 0) {
       notificationError({
         message: "Vui lòng chọn ghế trước khi tiếp tục",
+      });
+      return;
+    } else if (!isLogin) {
+      notificationError({
+        message: "Vui lòng chọn đăng nhập trước khi tiếp tục",
       });
       return;
     }
